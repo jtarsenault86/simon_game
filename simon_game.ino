@@ -10,7 +10,7 @@ Updates
 */
 
 // Constants and global variables
-// pin for PWM to passive buzzers
+// pin for PWM to passive buzzer
 const int BUZZER_PIN = 3;
 
 // pins for external output
@@ -58,7 +58,7 @@ void runGameLoop();
 void setup() {
 
   // initalize serial port to however many baud you feel like, gosh!
-  Serial.begin(300, SERIAL_8N2); 
+  Serial.begin(9600); 
   Serial.write("\nSerial port initialized!\n");
   
   // initialize output pins
@@ -119,6 +119,7 @@ void playWrongInput() {
 }
 
 // main game loop
+
 void runGameLoop() {
   Serial.write("\ngame loop starting\r");
 }
