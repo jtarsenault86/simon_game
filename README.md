@@ -8,14 +8,14 @@ Game: "Simon" clone for the Arduino Uno
 
 
 <p>Folder contents:</p>
-- An Arduino sketch (.ino file)
-- melodies.cpp
-- melodies.h
-- timer.h
-- tone_freq.h
+	- An Arduino sketch (.ino file)
+	- melodies.cpp
+	- melodies.h
+	- timer.h
+	- tone_freq.h
 
 
-<p>The .ino file can be uploaded to the Arduino through the Arduino IDE.</p>
+<p>The .ino file can be uploaded to the Arduino through the Arduino IDE. All files are required to run the game.<\br>Note: Due to the Arduino IDE's naming conventions, the folder name must match the name of the .ino file. Keep in mind when modifying files.</p>
 
 ## Note on Wiring and Assembly
 <p>Soon I will include a detailed schematic. For now, the relevant GPIO pins are indicated in the code.</p>
@@ -24,18 +24,26 @@ Game: "Simon" clone for the Arduino Uno
 
 ## How to Play
 
-<p>For those who don't already know, Simon is simple memory game first released by Milton Bradley in 1978. The computer generates an increasingly long sequence of sounds which the player must correctly repeat back. One wrong guess and you need to start over. Like the original, this game has four levels:
+<p>For those who don't already know, Simon is simple memory game first released by Milton Bradley in 1978. The computer generates an increasingly long sequence of sounds which the player must correctly repeat back. If too much time passes (5 seconds per sound), or if the player makes one wrong guess, the game is over. Like the original, this game has four levels:
 
 	1. Level 1 - 8 tones
 	2. Level 2 - 14 tones
 	3. Level 3 - 20 tones
 	4. Level 4 - 31 tones
 
-Completing the final sequence twice wins.
+After startup, the player has 30 seconds to choose a level indicated by the following LEDs before the game begins<\br>
+
+	1. Level 1 - Blue
+	2. Level 2 - Yellow
+	3. Level 3 - Red
+	4. Level 4 - Green
+
+Completing a sequence of maximum length twice wins.
 </p>
 
 
 ## Additional Details
 
 <p>I've included a module of basic melodies and a header file of musical tone frequencies (melodies.cpp, melodies.h, tone_freq.h) to easily enable changing of the game's tones. The defaults are E, C-Sharp, A, E.  A common alternative is B-Flat, D-Flat, F, B-Flat.</p>
+<p>The serial monitor is used for debugging purposes.</p>
 <p>There are some basic test functions at the bottom of the .ino file for testing the basic functionality of the setup. Later, I will move this to its own module.</p>
