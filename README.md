@@ -8,6 +8,7 @@ Game: "Simon" clone for the Arduino Uno
 
 
 <p>Folder contents:</p>
+
 	1. An Arduino sketch (.ino file)
 	2. melodies.cpp
 	3. melodies.h
