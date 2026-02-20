@@ -8,14 +8,14 @@ Game: "Simon" clone for the Arduino Uno
 
 
 <p>Folder contents:</p>
-	- An Arduino sketch (.ino file)
-	- melodies.cpp
-	- melodies.h
-	- timer.h
-	- tone_freq.h
+	1. An Arduino sketch (.ino file)
+	2. melodies.cpp
+	3. melodies.h
+	4. timer.h
+	5. tone_freq.h
 
 
-<p>The .ino file can be uploaded to the Arduino through the Arduino IDE. All files are required to run the game.<\br>Note: Due to the Arduino IDE's naming conventions, the folder name must match the name of the .ino file. Keep in mind when modifying files.</p>
+<p>The .ino file can be uploaded to the Arduino through the Arduino IDE. All files are required to run the game.<br>Note: Due to the Arduino IDE's naming conventions, the folder name must match the name of the .ino file. Keep in mind when modifying files.</p>
 
 ## Note on Wiring and Assembly
 <p>Soon I will include a detailed schematic. For now, the relevant GPIO pins are indicated in the code.</p>
@@ -31,7 +31,7 @@ Game: "Simon" clone for the Arduino Uno
 	3. Level 3 - 20 tones
 	4. Level 4 - 31 tones
 
-After startup, the player has 30 seconds to choose a level indicated by the following LEDs before the game begins<\br>
+After startup, the player has 30 seconds to choose a level indicated by the following LEDs before the game begins<br>
 
 	1. Level 1 - Blue
 	2. Level 2 - Yellow
