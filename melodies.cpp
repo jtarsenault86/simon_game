@@ -1,0 +1,1 @@
+/* Module consisting of melodies for use in Simon game */
