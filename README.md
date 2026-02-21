@@ -29,7 +29,7 @@ Game: "Simon" clone for the Arduino Uno
 	3. Level 3 - 20 tones
 	4. Level 4 - 31 tones
 
-After startup, the player has 30 seconds to choose a level indicated by the following LEDs before the game begins<br>
+After startup, the player has 10 seconds to choose a level indicated by the following LEDs before the game begins<br>
 
 	1. Level 1 - Blue
 	2. Level 2 - Yellow
