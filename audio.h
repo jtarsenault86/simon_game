@@ -1,7 +1,7 @@
 /* Header file for module consisting of melodies for use in Simon game */
 
-#ifndef MELODIES_H
-#define MELODIES_H
+#ifndef AUDIO_H
+#define AUDIO_H
 
 
 #endif

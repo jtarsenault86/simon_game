@@ -8,6 +8,7 @@
 // Includes for timer constants and functions and constants for playing tones with the 
 // piezo-transducer (buzzer).
 #include "audio.h"
+#include "test.h"
 #include "timer.h"
 #include "tone_freq.h"
 
@@ -279,7 +280,7 @@ void testLevelGen(int level) {
     case 1:
       for (int i = 0; i < 8; i++) {
         levelOne[i] = random(0,3);
-        Serial.print(levelOne[i));
+        Serial.print(levelOne[i]);
         Serial.write(" ");
       }
       Serial.println();
