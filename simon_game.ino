@@ -49,6 +49,8 @@ int guessFour[31] = {0};
 int readButtonPress();
 int readPotInput();
 
+void runGameLoop();
+
 void testLevelGen(int level);
 void testStartup();
 
@@ -74,39 +76,27 @@ void setup() {
 
   randomSeed(A1);
   
-  testStartup();
 }
 
 void loop() {
 
-
-   // TODO: Write level select function
-   int levelSelected = readPotInput();
-   Serial.print(levelSelected);
-   Serial.println();
-   delay(1000);
-   digitalWrite(BLUE_LED_PIN, LOW);
-   digitalWrite(YELLOW_LED_PIN, LOW);
-   digitalWrite(RED_LED_PIN, LOW);
-   digitalWrite(GREEN_LED_PIN, LOW);
-   
-   
-   int choice = readButtonPress();
-   Serial.print(choice);
-   Serial.println();
-   delay(1000);
 }
-
-
 
 /* Wrapper functions */
 
+  void runGameLoop() {
 
+  // TODO: level select - timer requires a wrapper func
+  // TODO: generate level
+  // TODO: player input - timer also required
+    
+  }
 
 
 
 
 /* Input functions */
+
 
 // Process user input (1): push buttons
 // polls for a single button to be pressed
@@ -240,22 +230,22 @@ void generateSequence(int level) {
   switch (level) {
     case 1:
       Serial.write("Generating level one sequence\n");
-      testLevelGen(level);
+      
       break;
 
     case 2:
       Serial.write("Generating level two sequence\n");
-      testLevelGen(level);
+      
       break;
 
     case 3:
       Serial.write("Generating level three sequence\n");
-      testLevelGen(level);
+      
       break;
 
     case 4:
       Serial.write("Generating level four sequence\n");
-      testLevelGen(level);
+      
       break;
 
     default:
@@ -263,73 +253,4 @@ void generateSequence(int level) {
       break;
     
   }
-}
-
-
-
-
-
-/* Test Functions */
-
-
-// test level generator by generating and playing entire level
-void testLevelGen(int level) {
-
-  switch(level) {
-
-    case 1:
-      for (int i = 0; i < 8; i++) {
-        levelOne[i] = random(0,3);
-        Serial.print(levelOne[i]);
-        Serial.write(" ");
-      }
-      Serial.println();
-      delay(1000);
-      break;
-      
-    case 2:
-      break;
-      
-    case 3:
-      break;
-      
-    case 4:
-      break;
-    default:
-      break;
-  }
-}
-
-
-// tests to run at startup
-void testStartup() {
-
-  Serial.write("Testing buzzer\n");
-  tone(BUZZER_PIN, TONE_C4);
-  delay(250);
-  noTone(BUZZER_PIN);
-  delay(50);
-  tone(BUZZER_PIN, TONE_C4);
-  delay(250);
-  noTone(BUZZER_PIN);
-  delay(50);
-
-  Serial.write("Testing LEDs\n");
-  digitalWrite(BLUE_LED_PIN, HIGH);
-  delay(250);
-  digitalWrite(YELLOW_LED_PIN, HIGH);
-  delay(250);
-  digitalWrite(RED_LED_PIN, HIGH);
-  delay(250);
-  digitalWrite(GREEN_LED_PIN, HIGH);
-  delay(500);
-  
-  digitalWrite(GREEN_LED_PIN, LOW);
-  delay(250);
-  digitalWrite(RED_LED_PIN, LOW);
-  delay(250);
-  digitalWrite(YELLOW_LED_PIN, LOW);
-  delay(250);  
-  digitalWrite(BLUE_LED_PIN, LOW);
-  delay(250);
 }
