@@ -8,9 +8,14 @@
 // Includes for timer constants and functions and constants for playing tones with the 
 // piezo-transducer (buzzer).
 #include "audio.h"
-#include "test.h"
 #include "timer.h"
 #include "tone_freq.h"
+
+// Color tone frequencies
+#define BLUE_TONE   TONE_G3
+#define YELLOW_TONE TONE_C4
+#define RED_TONE    TONE_E4
+#define GREEN_TONE  TONE_G4
 
 // Output pin number constants
 #define BUZZER_PIN     3
@@ -26,12 +31,6 @@ const int POT_INPUT = A0;
 #define RED_BUTTON_PIN     6
 #define GREEN_BUTTON_PIN   7
 
-// Color tone frequencies
-#define BLUE_TONE   TONE_G3
-#define YELLOW_TONE TONE_C4
-#define RED_TONE    TONE_E4
-#define GREEN_TONE  TONE_G4
-
 
 // Arrays to hold generated sequences and player guesses for each level
 int levelOne[8] = {0};
@@ -44,18 +43,24 @@ int guessTwo[14] = {0};
 int guessThree[20] = {0};
 int guessFour[31] = {0};
 
+const int levelOneLength = 8;
+const int levelTwoLength = 14;
+const int levelThreeLength = 20;
+const int levelFourLength = 31;
+
 // Function prototypes:
 
 int readButtonPress();
 int readPotInput();
 
+void generateSequence(int level);
+
+void playBack(int output);
+
 void runGameLoop();
+int runLevelSelect();
 
-void testLevelGen(int level);
-void testStartup();
-
-
-
+long timeNow = millis();
 
 // Set pin modes, start serial port, seed RNG
 void setup() {
@@ -80,17 +85,46 @@ void setup() {
 
 void loop() {
 
+  runGameLoop();
 }
 
 /* Wrapper functions */
 
-  void runGameLoop() {
-
+// main game loop
+void runGameLoop() {
+  
   // TODO: level select - timer requires a wrapper func
+  int gameLevel = runLevelSelect();
+  delay(1000);
+  
   // TODO: generate level
+  generateSequence(gameLevel);
+  
   // TODO: player input - timer also required
-    
+  
+}
+
+// Runs 20 second timer for level selection and returns level indicated.
+int runLevelSelect() {
+  Serial.write("Selecting Level ... \n");
+  timeNow = millis();
+  long prevTimeCheck = 0;
+  const long selectTimeLimit = 20000;
+  int levelSelection;
+
+  while((timeNow - prevTimeCheck) <= selectTimeLimit) {
+    Serial.write("Making Selection....\n");
+    timeNow = millis();
+    delay(1000);
+    levelSelection = readPotInput();
+
+
   }
+  
+  Serial.write("Time's up!\n");
+  return levelSelection;
+  
+}
 
 
 
@@ -108,8 +142,7 @@ int readButtonPress() {
   while(polling) {
 
     const int debouncePeriod = 100;
-    long lastPressTime = 0;
-    long timeNow = millis();
+    unsigned long lastPressTime = 0;
     
     if (!digitalRead(BLUE_BUTTON_PIN && (lastPressTime > timeNow + debouncePeriod))) {
       Serial.write("Blue button pressed\n");
@@ -172,6 +205,7 @@ int readPotInput() {
     digitalWrite(YELLOW_LED_PIN, LOW);
     digitalWrite(RED_LED_PIN, LOW);
     digitalWrite(GREEN_LED_PIN, LOW);
+    Serial.write("Level one selected\n");
     return 1;
   }
 
@@ -180,6 +214,7 @@ int readPotInput() {
     digitalWrite(YELLOW_LED_PIN, HIGH);
     digitalWrite(RED_LED_PIN, LOW);
     digitalWrite(GREEN_LED_PIN, LOW);
+    Serial.write("Level two selected\n");
     return 2;
   }
 
@@ -188,6 +223,7 @@ int readPotInput() {
     digitalWrite(YELLOW_LED_PIN, LOW);
     digitalWrite(RED_LED_PIN, HIGH);
     digitalWrite(GREEN_LED_PIN, LOW);
+    Serial.write("Level three selected\n");
     return 3;
   }
 
@@ -196,6 +232,7 @@ int readPotInput() {
     digitalWrite(YELLOW_LED_PIN, LOW);
     digitalWrite(RED_LED_PIN, LOW);
     digitalWrite(GREEN_LED_PIN, HIGH);
+    Serial.write("Level four selected\n");
     return 4;
   }
 
@@ -230,22 +267,44 @@ void generateSequence(int level) {
   switch (level) {
     case 1:
       Serial.write("Generating level one sequence\n");
+      for(int i = 0; i < levelOneLength; i++) {
+        levelOne[i] = random(0,4);
+        Serial.print(levelOne[i]);
+        Serial.write(" ");
+        playBack(levelOne[i]);
+      }
+      Serial.write("\n");
       
       break;
 
     case 2:
       Serial.write("Generating level two sequence\n");
-      
+      for(int i = 0; i < levelTwoLength; i++) {
+        levelOne[i] = random(0,4);
+        Serial.print(levelTwo[i]);
+        Serial.write(" ");
+      }
+      Serial.write("\n");      
       break;
 
     case 3:
       Serial.write("Generating level three sequence\n");
-      
+      for(int i = 0; i < levelThreeLength; i++) {
+        levelOne[i] = random(0,4);
+        Serial.print(levelOne[i]);
+        Serial.write(" ");
+      }
+      Serial.write("\n");      
       break;
 
     case 4:
       Serial.write("Generating level four sequence\n");
-      
+      for(int i = 0; i < levelFourLength; i++) {
+        levelOne[i] = random(0,4);
+        Serial.print(levelOne[i]);
+        Serial.write(" ");
+      }
+      Serial.write("\n");      
       break;
 
     default:
@@ -253,4 +312,59 @@ void generateSequence(int level) {
       break;
     
   }
+}
+
+
+/* 
+
+/* Output functions */
+void playBack(int output) {
+
+  switch(output) {
+
+     // blue
+    case 0:
+      digitalWrite(BLUE_LED_PIN, HIGH);
+      tone(BUZZER_PIN, BLUE_TONE);
+      delay(500);
+      digitalWrite(BLUE_LED_PIN, LOW);
+      noTone(BUZZER_PIN);
+      delay(100);
+      break;
+
+    // yellow
+    case 1:
+      digitalWrite(YELLOW_LED_PIN, HIGH);
+      tone(BUZZER_PIN, YELLOW_TONE);
+      delay(500);
+      digitalWrite(YELLOW_LED_PIN, LOW);
+      noTone(BUZZER_PIN);
+      delay(100);
+      break;
+
+    // red
+    case 2:
+      digitalWrite(RED_LED_PIN, HIGH);
+      tone(BUZZER_PIN, RED_TONE);
+      delay(500);
+      digitalWrite(RED_LED_PIN, LOW);
+      noTone(BUZZER_PIN);
+      delay(100);
+      break;
+
+    // green
+    case 3:
+      digitalWrite(GREEN_LED_PIN, HIGH);
+      tone(BUZZER_PIN, GREEN_TONE);
+      delay(500);
+      digitalWrite(GREEN_LED_PIN, LOW);
+      noTone(BUZZER_PIN);
+      delay(100);
+      break;
+
+    default:
+      Serial.print("Error: Invalid input for sound\n");
+      break;
+  }
+
 }

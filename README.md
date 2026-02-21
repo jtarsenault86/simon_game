@@ -5,18 +5,15 @@ Game: "Simon" clone for the Arduino Uno
 <p>This is a port of single player Simon for the Arduino Uno or equivalent MCU.</p>
 <p>It is constructed using basic components from an Arduino starter kit. A 10 kOhm rotary potentiometer is used for difficulty level selection.</p>
 <p>Note: This is very much a work in progress. As I obtain more and better components, I will improve and expand the functionality of the game ...</p>
-
+<p>At this point I'm working on the game mechanism. For now, it's just a level generator.</p>
 
 <p>Folder contents:</p>
 
 	1. An Arduino sketch (.ino file)
-	2. audio.cpp
-	3. audio.h
-	4. timer.h
 	5. tone_freq.h
 
 
-<p>The .ino file can be uploaded to the Arduino through the Arduino IDE. All files are required to run the game.<br>Note: Due to the Arduino IDE's naming conventions, the folder name must match the name of the .ino file. Keep in mind when modifying files.</p>
+<p>The .ino file can be uploaded to the Arduino through the Arduino IDE. Both are required to run the game.<br>Note: Due to the Arduino IDE's naming conventions, the folder name must match the name of the .ino file. Keep in mind when modifying files.</p>
 
 ## Note on Wiring and Assembly
 <p>Soon I will include a detailed schematic. For now, the relevant GPIO pins are indicated in the code.</p>
@@ -45,6 +42,5 @@ Completing a sequence of maximum length twice wins.
 
 ## Additional Details
 
-<p>I've included a module of basic melodies and a header file of musical tone frequencies (melodies.cpp, melodies.h, tone_freq.h) to easily enable changing of the game's tones. The defaults are E, C-Sharp, A, E.  A common alternative is B-Flat, D-Flat, F, B-Flat.</p>
+<p>I've included header file musical tone frequencies (melodies.cpp, melodies.h, tone_freq.h) to easily enable changing of the game's tones. The defaults are E, C-Sharp, A, E.  A common alternative is B-Flat, D-Flat, F, B-Flat.</p>
 <p>The serial monitor is used for debugging purposes.</p>
-<p>There are some basic test functions at the bottom of the .ino file for testing the basic functionality of the setup. Later, I will move this to its own module.</p>
