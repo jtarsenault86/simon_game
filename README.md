@@ -5,7 +5,7 @@ Game: "Simon" clone for the Arduino Uno
 <p>This is a port of single player Simon for the Arduino Uno or equivalent MCU.</p>
 <p>It is constructed using basic components from an Arduino starter kit. A 10 kOhm rotary potentiometer is used for difficulty level selection.</p>
 <p>Note: This is very much a work in progress. As I obtain more and better components, I will improve and expand the functionality of the game ...</p>
-<p>At this point I'm working on the game mechanism. For now, it's just a level generator.</p>
+<p>At this point I'm working on the game mechanism. For now, it's just a level generator. As I get the game working I will eventually modularize the code.</p>
 
 <p>Folder contents:</p>
 
