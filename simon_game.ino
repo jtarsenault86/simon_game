@@ -91,13 +91,13 @@ void loop() {
 // main game loop
 void runGameLoop() {
   
-  // TODO: level select - timer requires a wrapper func
+  // level select
   int gameLevel = runLevelSelect();
   delay(1000);
   
-  // TODO: generate level
+  // generate level
   generateSequence(gameLevel);
-  
+
   // TODO: player input - timer also required
   
 }
@@ -107,7 +107,7 @@ int runLevelSelect() {
   Serial.write("Selecting Level ... \n");
   timeNow = millis();
   long prevTimeCheck = 0;
-  const long selectTimeLimit = 20000;
+  const long selectTimeLimit = 10000;
   int levelSelection;
 
   while((timeNow - prevTimeCheck) <= selectTimeLimit) {
@@ -278,9 +278,10 @@ void generateSequence(int level) {
     case 2:
       Serial.write("Generating level two sequence\n");
       for(int i = 0; i < levelTwoLength; i++) {
-        levelOne[i] = random(0,4);
+        levelTwo[i] = random(0,4);
         Serial.print(levelTwo[i]);
         Serial.write(" ");
+        playBack(levelTwo[i]);
       }
       Serial.write("\n");      
       break;
@@ -288,9 +289,10 @@ void generateSequence(int level) {
     case 3:
       Serial.write("Generating level three sequence\n");
       for(int i = 0; i < levelThreeLength; i++) {
-        levelOne[i] = random(0,4);
-        Serial.print(levelOne[i]);
+        levelThree[i] = random(0,4);
+        Serial.print(levelThree[i]);
         Serial.write(" ");
+        playBack(levelThree[i]);
       }
       Serial.write("\n");      
       break;
@@ -298,9 +300,10 @@ void generateSequence(int level) {
     case 4:
       Serial.write("Generating level four sequence\n");
       for(int i = 0; i < levelFourLength; i++) {
-        levelOne[i] = random(0,4);
-        Serial.print(levelOne[i]);
+        levelFour[i] = random(0,4);
+        Serial.print(levelFour[i]);
         Serial.write(" ");
+        playBack(levelFour[i]);
       }
       Serial.write("\n");      
       break;
