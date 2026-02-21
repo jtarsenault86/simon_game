@@ -7,8 +7,6 @@
 
 // Includes for timer constants and functions and constants for playing tones with the 
 // piezo-transducer (buzzer).
-#include "audio.h"
-#include "timer.h"
 #include "tone_freq.h"
 
 // Color tone frequencies
